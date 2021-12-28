@@ -1,0 +1,80 @@
+<!-- {% raw %} -->
+<!-- {% verbatim %} -->
+<html>
+    <head>
+        <meta charset="utf-8">
+        <meta name="viewport" content="width=device-width, initial-scale=1">
+        <META HTTP-EQUIV="PRAGMA" CONTENT="NO-CACHE">
+        <META HTTP-EQUIV="EXPIRES" CONTENT="0">
+        <META HTTP-EQUIV="CACHE-CONTROL" CONTENT="NO-CACHE">
+
+        <link rel="icon" href="/static/TreeStudioAPIs/HAPTreeStudio.ico" type="image/x-icon">
+
+
+        <link rel="stylesheet" href="/static/TreeStudioAPIs/ExternalModule/fontawesome-free/css/all.min.css">
+
+
+        <link rel="stylesheet" href="/static/LoginPage/style.css">
+        <script src="/static/TreeStudioAPIs/ExternalModule/base64/base64.js"></script>
+        <script src="/static/TreeStudioAPIs/ExternalModule/jsencrypy/jsencrypt.min.js"></script>
+        <link rel="stylesheet" href="/static/TreeStudioAPIs/GlobalConsole/style.css">
+        <link rel="stylesheet" href="/static/TreeStudioAPIs/ExternalModule/animateCSS/animate.min.css">
+
+        <title>TREE LOGIN</title>
+        <!-- 導入Vue -->
+        <script src="/static/TreeStudioAPIs/ExternalModule/Vue2/vue.js"></script>
+    </head>
+    <body>
+        <div id="login-window" style="display: flex;justify-content: center;height: 100%;align-items: center;"
+        
+        >
+            <div class="login-box" style="width: 360px;"
+                @click.stop=""
+            >
+                <!-- <i class="fas fa-times" style="position: fixed;top:1rem;right:1rem;font-size: 2.5rem;"
+                    @click="parent.CloseIframe()"
+                    v-if="(window.frames.length != parent.frames.length)">
+                </i> -->
+                <div class="login-box-header center-content">
+                    <div style="font-size: 2.5rem;">
+                        <b style="color: var(--main-style-color);">TREE</b> Login
+                    </div>
+                </div>
+                <div class="login-box-body" @click.stop="">
+                    <p class="login-box-msg">請輸入原編以及密碼(與wiki相同喔~)</p>
+                    <form>
+                        <div class='login-box-input'>
+                            <input v-model="login_info.account" placeholder="帳號">
+                            <i class="fas fa-user"></i>
+                        </div>
+                        <div class='login-box-input'>
+                            <input v-model="login_info.password" placeholder="密碼" type="password" v-on:keyup.enter="goLogin()">
+                            <i class="fas fa-lock"></i>
+                        </div>
+                    </form>
+                    <div class='login-box-action'>
+                        <div>
+                            <!-- <input ref='login-remeber-checkbox' class="checkbox_input" style="display: none;" type="checkbox" v-model="if_remeberMe">
+                            <label class="checkbox_label" :class="if_remeberMe?'checkbox_label_checked':''"
+                                @click="$refs['login-remeber-checkbox'].click()"
+                            >Remember Me</label> -->
+                        </div>
+                        <button class="btn btn-primary" @click="goLogin()">
+                            Sign In
+                        </button>
+                    </div>
+                    <!-- <p class="login-box-misc-action">
+                        <a class="login-box-a-style-font">忘記密碼</a>
+                    </p>
+                    <p class="login-box-misc-action">
+                        <a class="login-box-a-style-font">申請新帳號</a>
+                    </p> -->
+                </div>
+            </div>
+        </div>
+    </body>
+    <script type="text/javascript" src="/static/LoginPage/VueSetting.js"></script>
+    <script type="text/javascript" src="/static/TreeStudioAPIs/GlobalConsole/VueSetting.js"></script>
+</html>
+<!-- {% endverbatim %} -->
+<!-- {% endraw %} -->

@@ -1,0 +1,180 @@
+:root {
+    --loading-color: var(--primary);
+}
+
+
+/* 文字垂直置中 */
+.text-v-center {
+    vertical-align: top;
+}
+
+.text-v-center:before {
+    content: "";
+    display: inline-block;
+    width: 0;
+    height: 100%;
+    vertical-align: middle;
+}
+
+.text-v-center label {
+    display: inline-block;
+}
+
+.vue-load-success-content {
+    color: #fff;
+    padding: 40px 0;
+    font-weight: 800;
+    font-size: 2em;
+    text-transform: uppercase;
+    letter-spacing: 0.5em;
+    overflow: hidden;
+    z-index: 2;
+    padding-top: 0;
+}
+  
+.vue-load-success-content .letter {
+    display: inline-block;
+    line-height: 1em;
+    z-index: 2;
+}
+
+
+/* #vue-load-success-window {
+    position: fixed;
+    z-index: 999;
+    top: 0;
+    left: 0;
+    right: 0;
+    bottom: 0;
+    
+    text-align: center;
+    font-size: 2rem;
+} */
+
+#vue-load-success {
+    position: fixed;
+    z-index: 99999;
+    width: 100%;
+    height: 100%;
+    background-color: var(--loading-color);
+    top: 0px;
+    text-align: center;
+    font-size: 2rem;
+}
+
+.vue-load-success-content-2 {
+    color: #fff;
+    padding: 10px 0;
+    font-weight: 400;
+    font-size: 1em;
+    letter-spacing: 0.3em;
+    overflow: hidden;
+    z-index: 2;
+}
+  
+.vue-load-success-content-2 .letter-2 {
+    display: inline-block;
+    line-height: .5em;
+    z-index: 2;
+}
+
+.vue-load-success-content-3 {
+    color: #fff;
+    padding: 10px 0;
+    font-weight: 400;
+    font-size: 3rem;
+    letter-spacing: 0.3em;
+    overflow: hidden;
+    z-index: 2;
+    padding: 0;
+}
+  
+.vue-load-success-content-3 .letter-3 {
+    display: inline-block;
+    line-height: .5em;
+    z-index: 2;
+    margin: 0 .5rem;
+}
+
+#vue-loading-window {
+    position: fixed;
+    z-index: 99999;
+    top: 0;
+    left: 0;
+    right: 0;
+    bottom: 0;
+    background-color: var(--loading-color);
+    text-align: center;
+    font-size: 2rem;
+    line-height: 100vh;
+}
+
+.delay-display-out-leave-active {
+    transition: opacity 1.8s
+}
+
+.delay-display-out-leave-to {
+    opacity: 0;
+}
+
+.loading-window-table-item {
+    position: absolute;
+    font-size: 200px;
+    color: rgba(255, 255, 255, 0.5);
+    z-index: 2;
+}
+
+
+.loading-window-table-item .icon-on{
+    position: absolute;
+    top: -40px;
+    left: 50px;
+    color: #fff;
+    font-size: 100px;
+}
+
+
+
+.anima-updown-in-5-sec-30px {
+    animation-name:AnimaUpdownin5sec-30px;
+    animation-duration:5s;
+	animation-timing-function: infinite;
+	animation-iteration-count:infinite;
+	pointer-events: none;
+    position: relative;
+}
+
+@keyframes AnimaUpdownin5sec-30px{
+    from { top: -30px ; }
+    50%  { top: 0px; } 
+    to   { top: -30px; }
+}
+
+.anima-updown-in-3-sec-50px {
+    animation-name:AnimaUpdownin5sec-50px;
+    animation-duration:3s;
+	animation-timing-function: infinite;
+	animation-iteration-count:infinite;
+	pointer-events: none;
+    position: relative;
+}
+
+@keyframes AnimaUpdownin5sec-50px{
+    from { top: 10px ; }
+    50%  { top: 0px; } 
+    to   { top: 10px; }
+}
+
+.anima-rotate-in-3-sec-10deg {
+    animation-name:AnimaRotatein3sec-10deg;
+    animation-duration:3s;
+	animation-timing-function: infinite;
+	animation-iteration-count:infinite;
+	pointer-events: none;
+}
+
+@keyframes AnimaRotatein3sec-10deg{
+    from { transform:rotate(-10deg); }
+    50%  { transform:rotate(10deg); } 
+    to   { transform:rotate(-10deg); }
+}

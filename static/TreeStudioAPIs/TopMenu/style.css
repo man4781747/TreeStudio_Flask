@@ -1,0 +1,48 @@
+#top-menu {
+    display: flex;
+    position: relative;
+    padding: .8125rem .5rem;
+    line-height: 2;
+    transition: width .3s ease-in-out;
+    background-color: #ffffff;
+    white-space: nowrap;
+    border-bottom: 1px #dfe2e6 solid;
+    height: 2rem;
+    justify-content: space-between;
+}
+
+.top-menu-btn {
+    color: rgba(0,0,0,.5);
+    padding-right: 1rem;
+    padding-left: 1rem;
+    line-height: unset !important;
+}
+
+.top-menu-btn:hover {
+    color: rgba(0,0,0,.7);
+}
+
+.login-btn {
+    padding: 0.25rem 0.5rem 0.25rem 1rem;
+    position: relative;
+    border: 1px solid #ced4da;
+    color: #495057;
+    border-radius: 0.25rem;
+    display: flex;
+    align-items: center;
+}
+
+.login-btn .user-ctrl-list-window{
+    display: none;
+}
+
+.login-btn:hover .user-ctrl-list-window{
+    display: unset;
+}
+
+.user-ctrl-list-window {
+    position: absolute;
+    top: calc(100% + 3px);
+    right: -5px;z-index: 1;
+    min-width: calc(100% + 10px);
+}

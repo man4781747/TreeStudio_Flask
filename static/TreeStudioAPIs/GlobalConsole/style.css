@@ -1,0 +1,71 @@
+#v-console-window {
+    position: fixed;
+    right: 10px;
+    top: 60px;
+    z-index: 9999999;
+    pointer-events: none;
+}
+
+.v-console-item {
+    box-shadow: 0 0 5px rgb(0 0 0 / 20%), 3px 3px 5px rgb(0 0 0 / 30%);
+    margin-bottom: 1rem;
+    display: flex;
+    background-color: #fff;
+    background-clip: border-box;
+    border: 0 solid rgba(0,0,0,.125);
+    border-radius: 0.25rem;
+    word-wrap: break-word;
+    width: min-content;
+    float: right;
+    --animate-duration: 1s;
+    overflow: hidden;
+    pointer-events: auto;
+}
+
+.v-console-item-icon {
+    height: 2rem;
+    width: 2rem;
+    display: flex;
+    align-items: center;
+    justify-content: center;
+    font-size: 1.5rem;
+    padding: 0.5rem;
+    /* border-right: 4px #fff solid; */
+    position: relative;
+}
+
+.v-console-item-content {
+    min-height: 2rem;
+    min-width: 100px;
+    max-width: 300px;
+    font-weight: bold;
+    color: gray;
+    align-items: center;
+    word-wrap:break-word;
+    padding: 0.5rem;
+}
+
+.v-console-item-icon-delete-btn {
+    position: absolute;
+    background-color: #fff;
+    /* border-color: var(--dark); */
+    left: calc(-100%);
+    top: calc(-100%);
+    transition: left .5s, top .5s;
+    border-bottom-right-radius: 0.5rem;
+    box-shadow: 0 0 2px rgb(0 0 0 / 13%), 0 1px 2px rgb(0 0 0 / 20%);
+}
+
+.v-console-item-icon:hover .v-console-item-icon-delete-btn {
+    left: 0;
+    top: 0;
+    cursor: pointer;
+}
+
+.v_console_del_btn {
+    transition: color .5s;
+}
+
+.v_console_del_btn:hover {
+    color: var(--danger) !important;
+}
