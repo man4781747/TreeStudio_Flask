@@ -5,6 +5,11 @@ import json
 import datetime
 import psycopg2
 import psycopg2.extras
+import re
+import requests
+
+WIKI_INDEX_URL = "http://10.95.43.73:8001/index.php"
+WIKI_API_URL = "http://10.95.43.73:8001/api.php"
 
 pgdb_config={
     'host':'34.80.222.210',
@@ -763,3 +768,71 @@ def Update_Announcement():
             return json.dumps({'result': 'fail', 'data': {'message': str(e)}})
     else:
         return json.dumps({'result': 'fail', 'date': {'message': '不正確的HTTP請求method'}})
+
+# wiki相關API
+def getWikiLoginToken(raw_resp):
+    S_re = r'input name=\"wpLoginToken\" type=\"hidden\" value=\"(?P<value>.*?)"\/'
+    Re_tokenGet = re.search(S_re, raw_resp.text)
+    if Re_tokenGet:
+        return Re_tokenGet.group('value')
+    return ""
+
+
+
+def BuildWIKIConnectSession():
+    payload = {
+        'wpName': 'BotEdit',
+        'wpPassword': 'BotEdit202010',
+        'wploginattempt': 'Log in',
+        'wpEditToken': "+\\",
+        'title': "Special:UserLogin",
+        'authAction': "login",
+        'force': "",
+        'wpForceHttps': "1",
+        'wpFromhttp': "1",
+    }
+    sess = requests.session()
+    resp = sess.get(WIKI_INDEX_URL + '?title=特殊:使用者登入&returnto=Spezial%3AUserLogin')
+    payload['wpLoginToken'] = getWikiLoginToken(resp)
+    print(payload['wpLoginToken'])
+    response_post = sess.post(
+        WIKI_INDEX_URL + '?title=Spezial:UserLogin&action=submitlogin&type=login', data=payload)
+    return sess
+
+def wiki_recentchanges(sess):
+    PARAMS = {
+        "action": "query",
+        "format": "json",
+        "list": "recentchanges",
+        "utf8": 1,
+        "rcprop": "user|userid|comment|title|timestamp|ids|sizes",
+        "rclimit": 100,
+        "enhanced": 1,
+        "urlversion": 2
+    }
+    wiki_recent = []
+    last_title = ''
+    wiki_no = 0
+    datalist = sess.get(url=WIKI_API_URL, params=PARAMS).json()[
+        'query']['recentchanges']
+    for tmp in datalist:
+        if (tmp['user'] != 'BotEdit' and tmp['title'] != last_title and tmp['type'] == 'edit'):
+            tmp_list = {
+                "title": "{}".format(tmp['title']),
+                "user": "{}".format(tmp['user']),
+                "url": WIKI_INDEX_URL + "/{}".format(tmp['title']),
+                "date": "{}".format(tmp['timestamp'][:10])
+            }
+            last_title = tmp['title']
+            wiki_recent.append(tmp_list)
+            wiki_no += 1
+        if wiki_no > 19:
+            break
+    return wiki_recent
+
+def Get_Wiki_Recent_Change():
+    try:
+        L_wiki_recent = wiki_recentchanges(BuildWIKIConnectSession())
+        return json.dumps({'result': 'success', 'data': L_wiki_recent})
+    except Exception as e:
+        return json.dumps({'result': 'fail', 'data': {'message': str(e)}})

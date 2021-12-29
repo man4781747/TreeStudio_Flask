@@ -30,5 +30,6 @@ def load_app(flask_app):
     flask_app.add_url_rule('/TreeStudioAPIs/OrderSys_ShopCart_Manager/shop_cart_id/<shop_cart_id>/', 'OrderSys_ShopCart_Manager', route.OrderSys_ShopCart_Manager, methods=["GET", "POST"])
     flask_app.add_url_rule('/TreeStudioAPIs/OrderSys_ShopCart_Manager/shop_cart_id/<shop_cart_id>/<item_index>/', 'OrderSys_ShopCart_Manager', route.OrderSys_ShopCart_Manager, methods=["GET", "POST", "DELETE"])
     
-
+    flask_app.add_url_rule('/TreeStudioAPIs/Get_Wiki_Recent_Change/', 'WikiAPI', route.Get_Wiki_Recent_Change, methods=["GET])
+    
     return flask_app
