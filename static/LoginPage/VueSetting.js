@@ -1,4 +1,4 @@
-TREESTUDIO_PATH = "http://34.80.222.210:9000"
+TREESTUDIO_PATH = "http://34.80.222.210:8999"
 
 var Vue_loginWindow = new Vue({
 	el: '#login-window',

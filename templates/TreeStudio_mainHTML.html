@@ -1147,10 +1147,14 @@
                         </template>
                         <template v-slot:title-active-btn>
                             <div style="display: flex;" v-if="shop_order_info.order_info.alive"> 
-                                <div class="box-card-title-btn-info" @click.stop="delOrderCheckWindowOpen = true">
+                                <div 
+                                    v-if="shop_order_info.order_info.owner_name == TreeLoginInof.login_info.user_name"
+                                    class="box-card-title-btn-info" @click.stop="delOrderCheckWindowOpen = true">
                                     刪除
                                 </div>
-                                <div class="box-card-title-btn-info" @click.stop="clickColseOrderBtn()">
+                                <div 
+                                    v-if="shop_order_info.order_info.owner_name == TreeLoginInof.login_info.user_name"
+                                    class="box-card-title-btn-info" @click.stop="clickColseOrderBtn()">
                                     結單去
                                 </div>
                             </div>
@@ -1340,21 +1344,36 @@
                                                         <td>{{D_shopCartItemData.item_content}}</td>
                                                         <td>
                                                             <div class='ts-table-active-list' style='justify-content:unset;'>
-                                                                <div class='ts-btn btn-close' @click="clickDelShopCartItemBtn(D_shopCartItemData)"    
+                                                                <template
                                                                     v-if="shop_order_info.order_info.alive"
                                                                 >
-                                                                    <i class="fas fa-trash-alt table-smail-btn"></i>
-                                                                </div>
-                                                                <div class='ts-btn btn-active' @click="clickCloseShopCartItemBtn(D_shopCartItemData)"    
-                                                                    v-else-if="D_shopCartItemData.pay == false"
+                                                                    <div class='ts-btn btn-close' @click="clickDelShopCartItemBtn(D_shopCartItemData)"    
+                                                                        v-if="((D_shopCartItemData.shopper_name == TreeLoginInof.login_info.user_name) | 
+                                                                                (TreeLoginInof.login_info.user_name == shop_order_info.order_info.owner_name))"
+                                                                    >
+                                                                        <i class="fas fa-trash-alt table-smail-btn"></i>
+                                                                    </div>
+                                                                    <div v-else class='ts-btn btn-notwork'>
+                                                                        <i class="fas fa-trash-alt table-smail-btn"></i>
+                                                                    </div>
+                                                                </template>
+                                                                <template
+                                                                    v-else="shop_order_info.order_info.alive"
                                                                 >
-                                                                    <i class="fas fa-hand-holding-usd table-smail-btn"></i>
-                                                                </div>                                                                
-                                                                <div class='ts-btn btn-notwork' @click=""    
-                                                                    v-else
-                                                                >
-                                                                    <i class="fas fa-hand-holding-usd table-smail-btn"></i>
-                                                                </div>
+                                                                    <div class='ts-btn btn-active' @click="
+                                                                    (TreeLoginInof.login_info.user_name == shop_order_info.order_info.owner_name)?
+                                                                    clickCloseShopCartItemBtn(D_shopCartItemData):v_console.log('只有團長可以點擊喔~')
+                                                                        "    
+                                                                        v-if="D_shopCartItemData.pay == false"
+                                                                    >
+                                                                        <i class="fas fa-hand-holding-usd table-smail-btn"></i>
+                                                                    </div>                                                                
+                                                                    <div class='ts-btn btn-notwork' @click=""    
+                                                                        v-else
+                                                                    >
+                                                                        <i class="fas fa-hand-holding-usd table-smail-btn"></i>
+                                                                    </div>
+                                                                </template>
                                                             </div>
                                                         </td>  
                                                     </tr>

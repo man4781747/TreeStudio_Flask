@@ -1,4 +1,4 @@
-var LoginPagePath = "http://34.80.222.210:9000/loginPage"
+var LoginPagePath = "http://34.80.222.210:8999/loginPage"
 
 var TreeLoginInof = {'login_info': {'user_name': ''}}
 var loginWindow;

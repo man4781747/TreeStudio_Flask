@@ -3,11 +3,12 @@ from flask_sqlalchemy import SQLAlchemy
 from flask import render_template
 import json
 import datetime
+import os
 
 import app.loginSys as loginSys
 import app.TreeStudio as loginTS
 
-app = Flask(__name__,static_url_path='/static', static_folder='/home/coder/project/TreeStudio_Flask/static')
+app = Flask(__name__,static_url_path='/static', static_folder=os.path.join(os.path.split(os.path.realpath(__file__))[0],'static'))
 
 loginSys.load_app(app)
 loginTS.load_app(app)
